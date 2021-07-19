@@ -1,0 +1,34 @@
+version:  2.1
+orbs:
+  heroku: circleci/heroku@1.2.6
+
+jobs:
+  test-and-build:
+    docker:
+      - image: circleci/openjdk:11
+
+    steps:
+      - checkout
+      - run:
+          name: Download Maven Dependencies
+          command: maven dependency:go-offline
+      - run:
+          name: Test and Build The App
+          command: maven clean build
+
+  deploy:
+    docker:
+      - image: circleci/openjdk:11
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
+
+
+workflows:
+  deploy-application:
+    jobs:
+      - test-and-build
+      - deploy:
+          requires:
+            - test-and-build
