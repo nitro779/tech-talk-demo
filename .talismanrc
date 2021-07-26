@@ -1,0 +1,7 @@
+fileignoreconfig:
+- filename: .mvn/wrapper/MavenWrapperDownloader.java
+  checksum: 4673a3fb1f5c520f5477e27d69de0ec5f8fb05b4ad80ed548b059d9f3e7ea881
+- filename: mvnw
+  checksum: 611c428c8f23170f6e7c07fe78c93f88a0f9389bc6d6fafb99730faf0714abf1
+
+
