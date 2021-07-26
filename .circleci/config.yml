@@ -5,20 +5,32 @@ orbs:
 jobs:
   test-and-build:
     docker:
-      - image: circleci/openjdk:11
+      - image: circleci/openjdk:8-jdk
 
     steps:
       - checkout
       - run:
           name: Download Maven Dependencies
           command: mvn dependency:go-offline
+
+      - restore_cache:
+          key: tech-talk-demo{{ checksum "pom.xml" }}
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: tech-talk-demo{{ checksum "pom.xml" }}
+
       - run:
-          name: Test and Build The App
-          command: mvn clean build
+          name: Test The Application
+          command: mvn test
+      - run:
+          name: Package the Application
+          command: mvn package -B
 
   deploy:
     docker:
-      - image: circleci/openjdk:11
+      - image: circleci/openjdk:8-jdk
     steps:
       - checkout
       - heroku/install
