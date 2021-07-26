@@ -11,10 +11,10 @@ jobs:
       - checkout
       - run:
           name: Download Maven Dependencies
-          command: maven dependency:go-offline
+          command: mvn dependency:go-offline
       - run:
           name: Test and Build The App
-          command: maven clean build
+          command: mvn clean build
 
   deploy:
     docker:
