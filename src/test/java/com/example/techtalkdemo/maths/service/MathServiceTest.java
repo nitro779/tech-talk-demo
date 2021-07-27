@@ -21,7 +21,7 @@ class MathServiceTest {
         MathService service = new MathService();
 
         ResultDto actualDto = service.subtract(10, 5);
-        ResultDto expectedDto = new ResultDto("Difference", 5);
+        ResultDto expectedDto = new ResultDto("Difference", 100);
 
         assertEquals(expectedDto,actualDto);
     }
