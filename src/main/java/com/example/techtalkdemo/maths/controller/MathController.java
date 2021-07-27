@@ -14,7 +14,7 @@ public class MathController {
     private MathService mathService;
     @GetMapping("/")
     public String welcome(){
-        return "Welcome to Math REST API";
+        return "Welcome to Tech Talk";
     }
 
     @GetMapping(value = "/addition",produces = MediaType.APPLICATION_JSON_VALUE)
